@@ -1,101 +1,98 @@
 import Image from "next/image";
+import Link from 'next/link'
+import FeatureCard from "@/components/FeaturedCard";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    return (
+        <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white">
+          <header className="container mx-auto px-4 py-6 flex justify-between items-center">
+            <div className="flex items-center space-x-2">
+              <Image src="/logo.svg" alt="SQLMaster Logo" width={32} height={32} />
+              <span className="text-2xl font-bold">SQLMaster</span>
+            </div>
+            <nav>
+              <ul className="flex space-x-4">
+                <li><Link href="#features" className="hover:text-blue-400 transition-colors">Features</Link></li>
+                <li><Link href="#" className="hover:text-blue-400 transition-colors">Pricing</Link></li>
+                <li><Link href="#" className="hover:text-blue-400 transition-colors">About</Link></li>
+                <li><Link href="/login" className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded transition-colors">Login</Link></li>
+              </ul>
+            </nav>
+          </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          <main className="container mx-auto px-4 py-12">
+            <section className="text-center mb-16">
+              <h1 className="text-5xl font-bold mb-4">Master SQL Through Interactive Challenges</h1>
+              <p className="text-xl mb-8">Enhance your database skills with real-world scenarios and expert-crafted problems.</p>
+              <div className="flex justify-center space-x-4">
+                <Link href="/register" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition-colors">
+                  Get Started
+                </Link>
+                <Link href="#features" className="bg-transparent hover:bg-white hover:text-gray-900 text-white font-bold py-2 px-4 rounded border border-white transition-colors">
+                  Learn More
+                </Link>
+              </div>
+            </section>
+
+            <section className="mb-16">
+              <div className="bg-gray-800 border border-gray-700 rounded-lg p-6">
+                <h2 className="text-2xl font-bold mb-4">SQL Playground Preview</h2>
+                <div className="bg-black rounded-lg p-4 font-mono text-sm">
+                  <div className="mb-2 text-gray-400">-- Example SQL query</div>
+                  <div className="text-green-400">
+                    SELECT name, score FROM leaderboard ORDER BY score DESC LIMIT 5;
+                  </div>
+                  <div className="mt-4 text-gray-400">-- Result preview</div>
+                  <div className="mt-2 text-green-400">
+                    | name  | score |
+                    |-------|-------|
+                    | Alice | 980   |
+                    | Bob   | 850   |
+                    | Carol | 720   |
+                    | Dave  | 690   |
+                    | Eve   | 650   |
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section id="features" className="grid md:grid-cols-3 gap-8 mb-16">
+              <FeatureCard
+                  icon="📊"
+                  title="Diverse Challenges"
+                  description="From basic queries to complex data manipulations, our platform offers a wide range of SQL challenges."
+              />
+              <FeatureCard
+                  icon="🏆"
+                  title="Skill Progression"
+                  description="Track your progress and earn badges as you complete challenges and improve your SQL mastery."
+              />
+              <FeatureCard
+                  icon="👥"
+                  title="Community Learning"
+                  description="Connect with other learners, share solutions, and participate in friendly competitions."
+              />
+            </section>
+
+            <section className="text-center mb-16">
+              <h2 className="text-3xl font-bold mb-4">Ready to Level Up Your SQL Skills?</h2>
+              <p className="text-xl mb-8">Join thousands of developers who are mastering SQL through our interactive platform.</p>
+              <div className="max-w-md mx-auto">
+                <form className="flex flex-col space-y-4">
+                  <input type="email" placeholder="Enter your email" className="px-4 py-2 rounded bg-gray-700 text-white" />
+                  <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition-colors">
+                    Sign Up for Free
+                  </button>
+                </form>
+              </div>
+            </section>
+          </main>
+
+          <footer className="bg-gray-900 py-8">
+            <div className="container mx-auto px-4 text-center text-gray-400">
+              <p>&copy; 2023 SQLMaster. All rights reserved.</p>
+            </div>
+          </footer>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
-}
+    )
+  }
