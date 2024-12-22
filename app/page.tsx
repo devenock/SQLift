@@ -13,9 +13,8 @@ export default function Home() {
             <nav>
               <ul className="flex space-x-4">
                 <li><Link href="#features" className="hover:text-blue-400 transition-colors">Features</Link></li>
-                <li><Link href="#" className="hover:text-blue-400 transition-colors">Pricing</Link></li>
                 <li><Link href="#" className="hover:text-blue-400 transition-colors">About</Link></li>
-                <li><Link href="/login" className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded transition-colors">Login</Link></li>
+                <li><Link href="/auth/login" className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded transition-colors">Login</Link></li>
               </ul>
             </nav>
           </header>
@@ -25,7 +24,7 @@ export default function Home() {
               <h1 className="text-5xl font-bold mb-4">Master SQL Through Interactive Challenges</h1>
               <p className="text-xl mb-8">Enhance your database skills with real-world scenarios and expert-crafted problems.</p>
               <div className="flex justify-center space-x-4">
-                <Link href="/register" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition-colors">
+                <Link href="/auth/register" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition-colors">
                   Get Started
                 </Link>
                 <Link href="#features" className="bg-transparent hover:bg-white hover:text-gray-900 text-white font-bold py-2 px-4 rounded border border-white transition-colors">
