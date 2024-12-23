@@ -5,10 +5,10 @@ export default function Features() {
   return (
     <section
       id="features"
-      className="mb-16 flex flex-col items-center w-full space-y-4"
+      className="mb-16 flex flex-col items-center w-3/4 mx-auto space-y-4"
     >
       <h3 className="text-3xl text-center font-bold mb-2">Main Features</h3>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
         <FeatureCard
           icon={<Code className="w-10 h-10" />}
           title="Interactive SQL Challenges"
@@ -28,11 +28,6 @@ export default function Features() {
           icon="📊"
           title="Diverse Challenges"
           description="From basic queries to complex data manipulations, our platform offers a wide range of SQL challenges."
-        />
-        <FeatureCard
-          icon="👥"
-          title="Community Learning"
-          description="Connect with other learners, share solutions, and participate in friendly competitions."
         />
       </div>
     </section>
