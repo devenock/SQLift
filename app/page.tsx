@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import Playground from "@/components/Playground";
 import Features from "@/components/Features";
 import CallToAction from "@/components/CallToAction";
+import { AboutAuthor } from "@/components/AboutAuthor";
 
 export default function Home() {
   return (
@@ -14,6 +15,9 @@ export default function Home() {
 
         {/*features*/}
         <Features />
+
+        {/*  about author */}
+        <AboutAuthor />
         {/*  Call to action*/}
         <CallToAction />
       </main>
