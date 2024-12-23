@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@codemirror/lang-sql": "^6.8.0",
+    "@material-tailwind/react": "^2.1.10",
     "@uiw/react-codemirror": "^4.23.7",
     "better-sqlite3": "^11.7.0",
     "codemirror": "^6.0.1",
