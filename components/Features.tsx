@@ -1,5 +1,10 @@
 import FeatureCard from "@/components/FeaturedCard";
-import { Code, Trophy, Database, Users } from "lucide-react";
+import {
+  Code,
+  Trophy,
+  Database,
+  ChartNoAxesColumnIncreasing,
+} from "lucide-react";
 
 export default function Features() {
   return (
@@ -10,22 +15,24 @@ export default function Features() {
       <h3 className="text-3xl text-center font-bold mb-2">Main Features</h3>
       <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
         <FeatureCard
-          icon={<Code className="w-10 h-10" />}
+          icon={<Code className="w-10 h-10 text-meta-3" />}
           title="Interactive SQL Challenges"
           description="Practice with a variety of SQL challenges, from basic queries to complex data manipulations."
         />
         <FeatureCard
-          icon={<Database className="w-10 h-10" />}
+          icon={<Database className="w-10 h-10 text-meta-3" />}
           title="In-Browser SQL Playground"
           description="Write and execute SQL queries directly in your browser with our embedded SQL engine."
         />
         <FeatureCard
-          icon={<Trophy className="w-10 h-10" />}
+          icon={<Trophy className="w-10 h-10 text-meta-3" />}
           title="Progress Tracking"
           description="Monitor your learning journey with our built-in progress tracking system."
         />
         <FeatureCard
-          icon="📊"
+          icon={
+            <ChartNoAxesColumnIncreasing className="w-10 h-10 text-meta-3" />
+          }
           title="Diverse Challenges"
           description="From basic queries to complex data manipulations, our platform offers a wide range of SQL challenges."
         />

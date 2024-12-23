@@ -29,7 +29,7 @@ export default function Header() {
           <li>
             <Link
               href="/auth/login"
-              className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded transition-colors"
+              className="bg-meta-3 hover:bg-blue-600 px-4 py-2 rounded transition-colors"
             >
               Login
             </Link>

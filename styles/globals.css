@@ -6,26 +6,7 @@
 
 @layer base {
   body {
-    @apply font-satoshi font-normal text-base text-body bg-whiten relative z-1;
-  }
-  .step-item {
-    @apply relative flex items-center space-x-2;
-  }
-  .step {
-    @apply w-7 h-7 text-sm flex items-center justify-center z-10 relative bg-stroke rounded-full font-semibold text-white;
-  }
-  .active .step {
-    @apply bg-primary;
-  }
-  .complete .step {
-    @apply bg-primary;
-  }
-  .complete p {
-    @apply text-primary;
-  }
-  .complete:not(:first-child):before,
-  .active:not(:first-child):before {
-    @apply bg-primary;
+    @apply font-satoshi font-normal text-base bg-boxdark-2  relative z-1;
   }
 }
 

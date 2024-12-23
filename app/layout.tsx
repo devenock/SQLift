@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "../styles/globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Toast from "@/components/Toast";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export const metadata: Metadata = {
   title: "SQL Master",
@@ -16,12 +18,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`antialiased`}>
-        <div className="bg-gradient-to-b from-gray-900 to-gray-800 text-white">
+        <div className="text-white">
           {/*header*/}
           <Header />
           <main> {children}</main>
           {/* footer*/}
           <Footer />
+          <ScrollToTop />
+          <Toast />
         </div>
       </body>
     </html>

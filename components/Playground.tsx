@@ -44,12 +44,12 @@ const Playground: React.FC = () => {
         Try SQL in our in built playground. We have a sample employee table to
         help you get started writing SQL
       </p>
-      <div className="bg-gray-800 border-2 border-gray-700 mb-16 w-full space-x-3 flex flex-col lg:flex-row h-[350px] px-4">
+      <div className="bg-gray-800 border-2 rounded border-strokedark mb-16 w-full space-x-3 flex flex-col lg:flex-row h-[350px] px-4">
         <div className="w-1/2 flex flex-col py-3">
           <div className="shadow rounded">
             <button
               onClick={() => setQuery(sampleQuery)}
-              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+              className="bg-meta-3 text-white px-4 py-2 rounded hover:bg-blue-600"
             >
               Load Sample Query
             </button>
@@ -65,14 +65,14 @@ const Playground: React.FC = () => {
           </div>
           <button
             onClick={executeQuery}
-            className="bg-green-500 w-1/4 text-white px-4 py-2 rounded hover:bg-green-600"
+            className="bg-blue w-1/4 text-white px-4 py-2 rounded hover:bg-green-600"
           >
             Execute
           </button>
         </div>
 
         {/* Divider Line */}
-        <hr className="border hidden lg:block border-gray-700 w-full lg:w-px lg:h-full mb-8 lg:mb-0 lg:mx-8" />
+        <hr className="border hidden lg:block border-strokedark w-full lg:w-px lg:h-full mb-8 lg:mb-0 lg:mx-8" />
 
         <div className="w-1/2 flex flex-col  py-3">
           <h3 className="text-xl font-bold mb-6">Query Results</h3>
