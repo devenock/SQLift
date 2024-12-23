@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Github, Linkedin, Twitter, Youtube } from "lucide-react";
+import { Github, Linkedin, Twitter } from "lucide-react";
 
 export function AboutAuthor() {
   return (
@@ -22,19 +22,18 @@ export function AboutAuthor() {
           <div className="space-y-6">
             <h3 className="text-3xl font-bold">Enock Omondi</h3>
             <p className="text-gray-300 text-lg">
-              Hi! I'm a software engineer passionate about helping others excel
-              in coding interviews and level up their Software Engineering
-              career.
+              Hi! I'm a software engineer passionate about helping others
+              understand SQL and level up their Software Engineering career.
             </p>
             <p className="text-gray-300 text-lg">
-              After solving 1000s of coding problems across multiple platforms
-              and going through countless technical interviews myself, I created
-              AlgoMaster.io to help make the learning process more systematic
-              and enjoyable for everyone.
+              After solving hundreds of SQL problems across multiple platforms
+              and going through many SQL interviews myself, I created SQLift to
+              help make the learning process more systematic and enjoyable for
+              everyone.
             </p>
             <div className="flex gap-4 pt-4">
               <Link
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/enock-omondi/"
                 target="_blank"
                 className="p-2 rounded-full border border-gray-700 hover:bg-gray-800 transition-colors"
                 aria-label="LinkedIn Profile"
@@ -42,7 +41,7 @@ export function AboutAuthor() {
                 <Linkedin className="w-6 h-6" />
               </Link>
               <Link
-                href="https://twitter.com"
+                href="https://x.com/dev_enock"
                 target="_blank"
                 className="p-2 rounded-full border border-gray-700 hover:bg-gray-800 transition-colors"
                 aria-label="Twitter Profile"
@@ -50,7 +49,7 @@ export function AboutAuthor() {
                 <Twitter className="w-6 h-6" />
               </Link>
               <Link
-                href="https://github.com"
+                href="https://github.com/devenock"
                 target="_blank"
                 className="p-2 rounded-full border border-gray-700 hover:bg-gray-800 transition-colors"
                 aria-label="GitHub Profile"

@@ -65,7 +65,7 @@ const Playground: React.FC = () => {
           </div>
           <button
             onClick={executeQuery}
-            className="bg-blue w-1/4 text-white px-4 py-2 rounded hover:bg-green-600"
+            className="bg-blue w-1/4 text-white px-4 py-2 rounded hover:bg-meta-3"
           >
             Execute
           </button>
