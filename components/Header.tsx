@@ -6,7 +6,7 @@ export default function Header() {
     <header className="container mx-auto px-4 py-6 flex justify-between items-center">
       <Link href={"/"} className="flex items-center space-x-2">
         <Image src="/logo.svg" alt="SQLMaster Logo" width={32} height={32} />
-        <span className="text-2xl font-bold">SQLMaster</span>
+        <span className="text-2xl font-bold">SQLift</span>
       </Link>
       <nav>
         <ul className="flex space-x-4">

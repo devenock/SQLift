@@ -4,7 +4,7 @@ import { Github, Linkedin, Twitter, Youtube } from "lucide-react";
 
 export function AboutAuthor() {
   return (
-    <section className="bg-black text-white py-24">
+    <section className="py-24">
       <div className="container mx-auto px-4">
         <h2 className="text-5xl font-bold text-center mb-16">
           Meet the Creator
