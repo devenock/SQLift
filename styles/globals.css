@@ -34,11 +34,11 @@ html {
   }
 
   .cell-null {
-    @apply text-gray-400 italic;
+    @apply text-gray italic;
   }
 
   .row-hover {
-    @apply hover:bg-gray-50 transition-colors;
+    @apply hover:bg-gray transition-colors;
   }
 }
 
