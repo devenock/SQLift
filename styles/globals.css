@@ -25,4 +25,21 @@ html {
   }
 }
 
+.query-results-table {
+  .table-header {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 10;
+  }
+
+  .cell-null {
+    @apply text-gray italic;
+  }
+
+  .row-hover {
+    @apply hover:bg-gray transition-colors;
+  }
+}
+
 
