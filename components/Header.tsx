@@ -31,6 +31,16 @@ export default async function Header() {
               Challenges
             </Link>
           </li>
+          {user && (
+            <li>
+              <Link
+                href="/profile"
+                className="hover:text-blue-400 transition-colors"
+              >
+                Profile
+              </Link>
+            </li>
+          )}
           {!user ? (
             <li>
               <Link
