@@ -1,7 +1,5 @@
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-import NewHeader from "@/components/NewHeader";
-import NewFooter from "@/components/NewFooter";
 
 export default async function AuthenticatedLayout({
   children,
@@ -19,9 +17,7 @@ export default async function AuthenticatedLayout({
 
   return (
     <div className="flex flex-col min-h-screen">
-      <NewHeader />
       <main className="flex-grow container mx-auto py-8">{children}</main>
-      <NewFooter />
     </div>
   );
 }

@@ -25,10 +25,10 @@ export default async function RootLayout({
       <body className={`antialiased`}>
         <div className="text-white">
           {/*header*/}
-          {!user && <Header />}
+          <Header />
           <main> {children}</main>
           {/* footer*/}
-          {!user && <Footer />}
+          <Footer />
           <ScrollToTop />
           <Toast />
         </div>

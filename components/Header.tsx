@@ -1,7 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import { createClient } from "@/utils/supabase/server";
 
-export default function Header() {
+export default async function Header() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
   return (
     <header className="container mx-auto px-4 py-6 flex justify-between items-center">
       <Link href={"/"} className="flex items-center space-x-2">
@@ -26,14 +31,25 @@ export default function Header() {
               Challenges
             </Link>
           </li>
-          <li>
-            <Link
-              href="/auth/login"
-              className="bg-meta-3 hover:bg-blue-600 px-4 py-2 rounded transition-colors"
-            >
-              Login
-            </Link>
-          </li>
+          {!user ? (
+            <li>
+              <Link
+                href="/auth/login"
+                className="bg-meta-3 hover:bg-blue-600 px-4 py-2 rounded transition-colors"
+              >
+                Login
+              </Link>
+            </li>
+          ) : (
+            <li>
+              <Link
+                href="/auth/login"
+                className="bg-bodydark2 hover:bg-meta-1 hover:bg-blue-600 px-4 py-2 rounded transition-colors"
+              >
+                Logout
+              </Link>
+            </li>
+          )}
         </ul>
       </nav>
     </header>
