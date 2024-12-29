@@ -1,14 +1,27 @@
+"use client";
+
 import Link from "next/link";
-import { login } from "@/app/auth/login/action";
+import { login } from "./action";
+import { useActionState } from "react";
+
+const initialState = {
+  error: null,
+};
 
 export default function LoginPage() {
+  const [state, formAction] = useActionState(login, initialState);
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 flex items-center justify-center">
       <div className="bg-graydark p-8 rounded-lg shadow-lg w-96">
         <h1 className="text-3xl font-bold text-white mb-6 text-center">
           Login
         </h1>
-        <form className="space-y-4">
+        <form className="space-y-4" action={formAction}>
+          {state.error && (
+            <div className="bg-red-500 text-white p-2 rounded">
+              {state.error}
+            </div>
+          )}
           <div>
             <label
               htmlFor="email"
@@ -21,7 +34,7 @@ export default function LoginPage() {
               id="email"
               name="email"
               required
-              className="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white"
+              className="mt-1 block w-full px-3 py-2 bg-gray-700 border focus:shadow-xl focus:shadow-primary border-gray-600 rounded-md text-black"
             />
           </div>
           <div>
@@ -36,11 +49,10 @@ export default function LoginPage() {
               id="password"
               name="password"
               required
-              className="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white"
+              className="mt-1 block w-full px-3 py-2 bg-gray-700 focus:shadow-xl focus:shadow-primary border border-gray-600 rounded-md text-black"
             />
           </div>
           <button
-            formAction={login}
             type="submit"
             className="bg-primary flex justify-center items-center w-full mx-auto hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition-colors"
           >
@@ -49,7 +61,7 @@ export default function LoginPage() {
         </form>
         <p className="mt-4 text-center text-gray-400">
           Don't have an account?{" "}
-          <Link href="/auth/register" className="text-blue-400 hover:underline">
+          <Link href="/auth/register" className="text-primary hover:underline">
             Register here
           </Link>
         </p>
