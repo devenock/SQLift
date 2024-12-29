@@ -1,154 +1,14 @@
-// import { createServerClient } from "@supabase/ssr";
-// import { NextResponse, type NextRequest } from "next/server";
-//
-// export async function updateSession(request: NextRequest) {
-//   let supabaseResponse = NextResponse.next({
-//     request,
-//   });
-//
-//   const supabase = createServerClient(
-//     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-//     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-//     {
-//       cookies: {
-//         getAll() {
-//           return request.cookies.getAll();
-//         },
-//         setAll(cookiesToSet) {
-//           cookiesToSet.forEach(({ name, value, options }) =>
-//             request.cookies.set(name, value),
-//           );
-//           supabaseResponse = NextResponse.next({
-//             request,
-//           });
-//           cookiesToSet.forEach(({ name, value, options }) =>
-//             supabaseResponse.cookies.set(name, value, options),
-//           );
-//         },
-//       },
-//     },
-//   );
-//
-//   // Do not run code between createServerClient and
-//   // supabase.auth.getUser(). A simple mistake could make it very hard to debug
-//   // issues with users being randomly logged out.
-//
-//   // IMPORTANT: DO NOT REMOVE auth.getUser()
-//
-//   const {
-//     data: { user },
-//   } = await supabase.auth.getUser();
-//
-//   if (
-//     !user &&
-//     !request.nextUrl.pathname.startsWith("/login") &&
-//     !request.nextUrl.pathname.startsWith("/auth")
-//   ) {
-//     // no user, potentially respond by redirecting the user to the login page
-//     const url = request.nextUrl.clone();
-//     url.pathname = "/auth/login";
-//     return NextResponse.redirect(url);
-//   }
-//
-//   // IMPORTANT: You *must* return the supabaseResponse object as it is.
-//   // If you're creating a new response object with NextResponse.next() make sure to:
-//   // 1. Pass the request in it, like so:
-//   //    const myNewResponse = NextResponse.next({ request })
-//   // 2. Copy over the cookies, like so:
-//   //    myNewResponse.cookies.setAll(supabaseResponse.cookies.getAll())
-//   // 3. Change the myNewResponse object to fit your needs, but avoid changing
-//   //    the cookies!
-//   // 4. Finally:
-//   //    return myNewResponse
-//   // If this is not done, you may be causing the browser and server to go out
-//   // of sync and terminate the user's session prematurely!
-//
-//   return supabaseResponse;
-// }
-
-// import { createServerClient, type CookieOptions } from "@supabase/ssr";
-// import { NextResponse, type NextRequest } from "next/server";
-//
-// export async function updateSession(request: NextRequest) {
-//   let response = NextResponse.next({
-//     request: {
-//       headers: request.headers,
-//     },
-//   });
-//
-//   const supabase = createServerClient(
-//     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-//     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-//     {
-//       cookies: {
-//         get(name: string) {
-//           return request.cookies.get(name)?.value;
-//         },
-//         set(name: string, value: string, options: CookieOptions) {
-//           request.cookies.set({
-//             name,
-//             value,
-//             ...options,
-//           });
-//           response = NextResponse.next({
-//             request: {
-//               headers: request.headers,
-//             },
-//           });
-//           response.cookies.set({
-//             name,
-//             value,
-//             ...options,
-//           });
-//         },
-//         remove(name: string, options: CookieOptions) {
-//           request.cookies.set({
-//             name,
-//             value: "",
-//             ...options,
-//           });
-//           response = NextResponse.next({
-//             request: {
-//               headers: request.headers,
-//             },
-//           });
-//           response.cookies.set({
-//             name,
-//             value: "",
-//             ...options,
-//           });
-//         },
-//       },
-//     },
-//   );
-//
-//   const {
-//     data: { user },
-//   } = await supabase.auth.getUser();
-//
-//   // Allow access to the landing page, login, and auth routes for all users
-//   if (
-//     request.nextUrl.pathname === "/" ||
-//     request.nextUrl.pathname.startsWith("/auth")
-//   ) {
-//     return response;
-//   }
-//
-//   // Redirect authenticated users trying to access the landing page to the challenges page
-//   if (user && request.nextUrl.pathname === "/") {
-//     return NextResponse.redirect(new URL("/challenges", request.url));
-//   }
-//
-//   // Redirect unauthenticated users to the login page for protected routes
-//   if (!user && !request.nextUrl.pathname.startsWith("/auth")) {
-//     return NextResponse.redirect(new URL("/auth/login", request.url));
-//   }
-//
-//   return response;
-// }
-
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+
+// Define protected and public paths
+const PUBLIC_PATHS = [
+  "/",
+  "/auth/login",
+  "/auth/signup",
+  "/auth/forgot-password",
+];
+const PROTECTED_PATHS = ["/profile", "/playground", "/challenges"];
 
 export async function updateSession(request: NextRequest) {
   let response = NextResponse.next({
@@ -207,23 +67,45 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  // Allow access to the landing page, login, and auth routes for all users
-  if (
-    request.nextUrl.pathname === "/" ||
-    request.nextUrl.pathname.startsWith("/auth")
-  ) {
-    return response;
-  }
+  const { pathname } = request.nextUrl;
 
-  // Redirect authenticated users trying to access the landing page to the challenges page
-  if (user && request.nextUrl.pathname === "/") {
+  // If user is authenticated
+  if (user) {
+    // Redirect from public paths (landing and auth pages) to challenges
+    if (PUBLIC_PATHS.includes(pathname)) {
+      return NextResponse.redirect(new URL("/challenges", request.url));
+    }
+
+    // Allow access to protected paths
+    if (PROTECTED_PATHS.includes(pathname)) {
+      return response;
+    }
+
+    // Redirect unknown paths to challenges
     return NextResponse.redirect(new URL("/challenges", request.url));
   }
 
-  // Redirect unauthenticated users to the login page for protected routes
-  if (!user && !request.nextUrl.pathname.startsWith("/auth")) {
+  // If user is not authenticated
+  else {
+    // Allow access to public paths
+    if (PUBLIC_PATHS.includes(pathname)) {
+      return response;
+    }
+
+    // Redirect from protected paths to login
     return NextResponse.redirect(new URL("/auth/login", request.url));
   }
-
-  return response;
 }
+
+export const config = {
+  matcher: [
+    /*
+     * Match all request paths except for:
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     * - public files (including images)
+     */
+    "/((?!_next/static|_next/image|favicon.ico|.*\\.(svg|png|jpg|jpeg|gif|webp)$).*)",
+  ],
+};
