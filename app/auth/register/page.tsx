@@ -9,6 +9,7 @@ const initialState = {
 };
 
 export default function RegisterPage() {
+  // @ts-ignore
   const [state, formAction] = useActionState(signup, initialState);
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 flex items-center justify-center">
