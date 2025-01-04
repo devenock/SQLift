@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
     const stmt = db.prepare(query);
     const rows = stmt.all();
     return NextResponse.json({ success: true, data: rows });
-  } catch (error) {
+  } catch (error: any) {
     return NextResponse.json(
       { success: false, error: error?.message },
       { status: 400 },

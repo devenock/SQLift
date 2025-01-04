@@ -22,9 +22,7 @@ const Playground: React.FC = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ query }),
       });
-
       const data = await response.json();
-
       if (data.success) {
         setResult(data.data);
       } else {

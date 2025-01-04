@@ -10,13 +10,12 @@ export function AboutAuthor() {
           Meet the Creator
         </h2>
         <div className="max-w-4xl mx-auto grid md:grid-cols-[300px_1fr] gap-8 items-start">
-          <div className="relative aspect-square w-full max-w-[300px] mx-auto">
+          <div className="w-48 h-48 sm:w-64 sm:h-64 mx-auto relative rounded-full overflow-hidden shrink-0">
             <Image
-              src="/profile.png"
+              src="/icon.jpeg"
               alt="Enock Omondi"
               fill
-              className="object-cover rounded-lg"
-              priority
+              className="object-cover"
             />
           </div>
           <div className="space-y-6">
