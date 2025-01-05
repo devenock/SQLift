@@ -70,7 +70,10 @@ export async function updateSession(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Allow access to the playground API route without authentication
-  if (pathname.startsWith("/api/execute-sql")) {
+  if (
+    pathname.startsWith("/api/execute-sql") ||
+    pathname.startsWith("/api/execute-query")
+  ) {
     return response;
   }
 
